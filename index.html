@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Triple Double Real Estate — Investment • Operation • Management</title>
+
+  <meta
+    name="description"
+    content="Triple Double Real Estate — Investment, Operation and Management of commercial and residential real estate."
+  >
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================================================
+        ROOT / DESIGN TOKENS
+    ========================================================= */
+
+    :root {
+      --black: #11110f;
+      --black-soft: #191917;
+
+      --white: #ffffff;
+      --off-white: #f5f3ef;
+      --paper: #eeece7;
+
+      --text: #171715;
+      --muted: #77746d;
+      --line: #d9d6cf;
+
+      --accent: #a99673;
+      --accent-dark: #8e7d5d;
+
+      --container: 1380px;
+
+      --display: clamp(3.2rem, 6.5vw, 7.5rem);
+      --h1: clamp(2.8rem, 5vw, 5.5rem);
+      --h2: clamp(2rem, 3.5vw, 4rem);
+      --h3: clamp(1.3rem, 1.8vw, 1.8rem);
+
+      --body: 1rem;
+      --small: .78rem;
+
+      --radius: 2px;
+
+      --transition: .45s cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      font-size: var(--body);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container-custom {
+      width: min(100% - 80px, var(--container));
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+        PRELOADER
+    ========================================================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-inner {
+      text-align: center;
+      color: white;
+    }
+
+    .loader-name {
+      font-family: "Manrope", sans-serif;
+      font-size: 1rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .loader-line {
+      width: 160px;
+      height: 1px;
+      background: rgba(255,255,255,.2);
+      margin: 22px auto 0;
+      overflow: hidden;
+    }
+
+    .loader-line span {
+      display: block;
+      width: 50%;
+      height: 100%;
+      background: white;
+      animation: loader 1.2s infinite ease-in-out;
+    }
+
+    @keyframes loader {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(300%); }
+    }
+
+    /* =========================================================
+        HEADER
+    ========================================================= */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 25px 0;
+      transition: var(--transition);
+    }
+
+    .site-header.scrolled {
+      padding: 15px 0;
+      background: rgba(17,17,15,.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      width: min(100% - 70px, var(--container));
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: white;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      font-family: "Manrope", sans-serif;
+      font-weight: 600;
+      letter-spacing: -.035em;
+      white-space: nowrap;
+    }
+
+    .brand-main {
+      font-size: 1.08rem;
+    }
+
+    .brand-sub {
+      font-size: .72rem;
+      margin-top: 4px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .65;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .main-nav a {
+      position: relative;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .015em;
+      opacity: .86;
+      transition: .3s ease;
+    }
+
+    .main-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 1px;
+      background: white;
+      transition: .3s ease;
+    }
+
+    .main-nav a:hover {
+      opacity: 1;
+    }
+
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 11px 18px;
+
+      border: 1px solid rgba(255,255,255,.35);
+
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+
+      transition: .35s ease;
+    }
+
+    .header-cta:hover {
+      background: white;
+      color: var(--black);
+      border-color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: white;
+      font-size: 1.7rem;
+    }
+
+    /* =========================================================
+        HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      background: var(--black);
+      color: white;
+
+      display: flex;
+      align-items: flex-end;
+
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      opacity: .65;
+
+      transform: scale(1.04);
+      animation: heroZoom 12s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.42) 0%,
+          rgba(0,0,0,.08) 42%,
+          rgba(0,0,0,.82) 100%
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      width: min(100% - 80px, var(--container));
+      margin: auto;
+      padding-bottom: 75px;
+      padding-top: 140px;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      font-size: .72rem;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+
+      margin-bottom: 27px;
+      color: rgba(255,255,255,.72);
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      max-width: 1100px;
+
+      font-family: "Manrope", sans-serif;
+      font-size: var(--display);
+      font-weight: 500;
+      letter-spacing: -.05em;
+      line-height: 1.08;
+    }
+
+    .hero-title span {
+      display: block;
+      color: rgba(255,255,255,.56);
+      margin-top: 5px;
+    }
+
+    .hero-bottom {
+      margin-top: 55px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 50px;
+
+      align-items: end;
+    }
+
+    .hero-copy {
+      max-width: 530px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.75;
+    }
+
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+
+      color: rgba(255,255,255,.7);
+    }
+
+    .scroll-circle {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.4);
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+    }
+
+    /* =========================================================
+        INTRO
+    ========================================================= */
+
+    .intro {
+      padding: 145px 0;
+      background: var(--off-white);
+    }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      color: var(--muted);
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .intro-grid {
+      margin-top: 60px;
+
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 90px;
+    }
+
+    .intro-title {
+      font-family: "Manrope", sans-serif;
+      font-size: var(--h2);
+      line-height: 1.15;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .intro-title em {
+      font-style: normal;
+      color: var(--accent-dark);
+      display: block;
+      margin-top: 5px;
+    }
+
+    .intro-text {
+      max-width: 720px;
+
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      line-height: 1.45;
+      letter-spacing: -.025em;
+    }
+
+    .intro-small {
+      margin-top: 35px;
+      max-width: 570px;
+
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.8;
+    }
+
+    /* =========================================================
+        STATS
+    ========================================================= */
+
+    .stats {
+      background: var(--black);
+      color: white;
+      padding: 105px 0;
+    }
+
+    .stats-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 70px;
+    }
+
+    .stats-title {
+      font-family: "Manrope", sans-serif;
+      font-size: var(--h2);
+      font-weight: 500;
+      letter-spacing: -.05em;
+      line-height: 1.1;
+    }
+
+    .stats-description {
+      max-width: 430px;
+      color: rgba(255,255,255,.55);
+      font-size: .95rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,.16);
+    }
+
+    .stat {
+      padding: 42px 35px 15px 0;
+      border-right: 1px solid rgba(255,255,255,.16);
+    }
+
+    .stat:not(:first-child) {
+      padding-left: 35px;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat-number {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(2.8rem, 4.5vw, 5.2rem);
+      line-height: 1.1;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .stat-number small {
+      font-size: .45em;
+      letter-spacing: -.02em;
+    }
+
+    .stat-label {
+      margin-top: 20px;
+      font-size: .72rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.48);
+    }
+
+    /* =========================================================
+        PORTFOLIO
+    ========================================================= */
+
+    .portfolio {
+      padding: 145px 0;
+      background: var(--off-white);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 50px;
+
+      margin-bottom: 65px;
+    }
+
+    .section-title {
+      font-family: "Manrope", sans-serif;
+      font-size: var(--h2);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -.05em;
+    }
+
+    .section-description {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 25px;
+    }
+
+    .project {
+      position: relative;
+      overflow: hidden;
+      background: #ddd;
+      color: white;
+    }
+
+    .project-large {
+      min-height: 680px;
+    }
+
+    .project-small {
+      min-height: 328px;
+    }
+
+    .project img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transition:
+        transform .9s cubic-bezier(.2,.65,.3,1),
+        filter .6s ease;
+    }
+
+    .project:hover img {
+      transform: scale(1.045);
+      filter: brightness(.88);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      padding: 38px;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 45%,
+          rgba(0,0,0,.78) 100%
+        );
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+
+      color: rgba(255,255,255,.68);
+    }
+
+    .project-name {
+      margin-top: 10px;
+
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(1.7rem, 3vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -.04em;
+      font-weight: 500;
+    }
+
+    .project-info {
+      margin-top: 10px;
+      font-size: .85rem;
+      color: rgba(255,255,255,.68);
+    }
+
+    .portfolio-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .portfolio-more {
+      margin-top: 55px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* =========================================================
+        EXPERTISE
+    ========================================================= */
+
+    .expertise {
+      padding: 145px 0;
+      background: var(--paper);
+    }
+
+    .expertise-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      margin-bottom: 75px;
+    }
+
+    .expertise-lead {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(2rem, 3.5vw, 4rem);
+      line-height: 1.15;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .expertise-lead span {
+      color: var(--accent-dark);
+      display: block;
+    }
+
+    .expertise-copy {
+      color: var(--muted);
+      max-width: 530px;
+      font-size: .98rem;
+      line-height: 1.8;
+    }
+
+    .expertise-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .expertise-item {
+      padding: 27px 0;
+
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      gap: 30px;
+      align-items: center;
+
+      border-bottom: 1px solid var(--line);
+
+      transition: padding .4s ease;
+    }
+
+    .expertise-item:hover {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .expertise-number {
+      color: var(--muted);
+      font-size: .7rem;
+      letter-spacing: .1em;
+    }
+
+    .expertise-name {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+      letter-spacing: -.035em;
+      font-weight: 500;
+    }
+
+    .expertise-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      transition: .35s ease;
+    }
+
+    .expertise-item:hover .expertise-icon {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+      transform: rotate(-45deg);
+    }
+
+    /* =========================================================
+        ASSET FOCUS
+    ========================================================= */
+
+    .asset-focus {
+      padding: 130px 0;
+      background: var(--off-white);
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .asset-card {
+      min-height: 390px;
+      position: relative;
+      overflow: hidden;
+
+      color: white;
+      background: var(--black);
+    }
+
+    .asset-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .55;
+      transition: transform .7s ease;
+    }
+
+    .asset-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .asset-card-content {
+      position: absolute;
+      inset: auto 25px 27px 25px;
+    }
+
+    .asset-card-number {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      opacity: .65;
+    }
+
+    .asset-card-title {
+      margin-top: 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: -.03em;
+    }
+
+    /* =========================================================
+        ABOUT
+    ========================================================= */
+
+    .about {
+      background: var(--black);
+      color: white;
+      padding: 150px 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.5fr;
+      gap: 100px;
+    }
+
+    .about-title {
+      font-family: "Manrope", sans-serif;
+      font-size: var(--h2);
+      line-height: 1.1;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .about-title span {
+      color: rgba(255,255,255,.38);
+      display: block;
+    }
+
+    .about-copy {
+      max-width: 720px;
+    }
+
+    .about-lead {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(1.7rem, 3vw, 3rem);
+      line-height: 1.25;
+      letter-spacing: -.03em;
+    }
+
+    .about-text {
+      margin-top: 32px;
+      color: rgba(255,255,255,.57);
+      line-height: 1.85;
+      max-width: 650px;
+    }
+
+    .about-line {
+      margin-top: 60px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.15);
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .about-detail span {
+      display: block;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+      margin-bottom: 7px;
+    }
+
+    .about-detail strong {
+      font-weight: 500;
+    }
+
+    /* =========================================================
+        CONTACT / CTA SECTION (WITH FORM)
+    ========================================================= */
+
+    .contact {
+      padding: 145px 0;
+      background: var(--off-white);
+    }
+
+    .contact-box {
+      padding: 80px;
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-family: "Manrope", sans-serif;
+      font-size: var(--h2);
+      line-height: 1.1;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .contact-copy {
+      margin-top: 20px;
+      max-width: 580px;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    /* =========================================================
+        BUTTONS
+    ========================================================= */
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+
+      padding: 15px 22px;
+
+      background: var(--black);
+      color: white;
+
+      border: 1px solid var(--black);
+
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+
+      transition: .35s ease;
+    }
+
+    .btn-main:hover {
+      background: transparent;
+      color: var(--black);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 14px 20px;
+
+      border: 1px solid var(--line);
+
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+
+      transition: .35s ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--black);
+      border-color: var(--black);
+      color: white;
+    }
+
+    /* =========================================================
+        FOOTER
+    ========================================================= */
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 100px 0 45px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 80px;
+      padding-bottom: 75px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .footer-brand {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      color: white;
+    }
+
+    .footer-description {
+      margin-top: 22px;
+      max-width: 410px;
+      color: rgba(255,255,255,.55);
+      font-size: .95rem;
+      line-height: 1.8;
+    }
+
+    .footer-heading {
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      font-size: .95rem;
+      color: rgba(255,255,255,.75);
+      transition: color .3s ease, transform .3s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(4px);
+    }
+
+    .footer-bottom {
+      padding-top: 35px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+
+      font-size: .75rem;
+      color: rgba(255,255,255,.4);
+      letter-spacing: .02em;
+    }
+
+    /* =========================================================
+        REVEAL ANIMATIONS
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+        RESPONSIVE MEDIA QUERIES (PARALLEL CSS)
+    ========================================================= */
+
+    @media (max-width: 991px) {
+      .container-custom,
+      .hero-content {
+        width: min(100% - 45px, var(--container));
+      }
+
+      .header-inner {
+        width: min(100% - 40px, var(--container));
+      }
+
+      .main-nav {
+        position: fixed;
+        inset: 0;
+        background: var(--black);
+        flex-direction: column;
+        justify-content: center;
+        gap: 25px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: .35s ease;
+      }
+
+      .main-nav.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .main-nav a {
+        font-size: 1.3rem;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 5;
+      }
+
+      .intro-grid,
+      .expertise-intro,
+      .about-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .contact-box {
+        padding: 55px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(3),
+      .stat:nth-child(4) {
+        border-top: 1px solid rgba(255,255,255,.16);
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+
+      .project-large {
+        min-height: 550px;
+      }
+
+      .project-small {
+        min-height: 300px;
+      }
+
+      .asset-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+
+      .footer-top > :first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container-custom,
+      .hero-content {
+        width: calc(100% - 32px);
+      }
+
+      .header-inner {
+        width: calc(100% - 28px);
+      }
+
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .brand-main {
+        font-size: .95rem;
+      }
+
+      .brand-sub {
+        font-size: .58rem;
+      }
+
+      .hero {
+        min-height: 760px;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 14vw, 4.5rem);
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-top: 35px;
+      }
+
+      .intro,
+      .portfolio,
+      .expertise,
+      .asset-focus,
+      .contact {
+        padding: 90px 0;
+      }
+
+      .stats {
+        padding: 80px 0;
+      }
+
+      .stats-heading,
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        padding: 30px 15px 30px 0 !important;
+      }
+
+      .stat:nth-child(even) {
+        padding-left: 15px !important;
+      }
+
+      .stat-number {
+        font-size: 2.8rem;
+      }
+
+      .portfolio-side {
+        grid-template-columns: 1fr;
+      }
+
+      .project-large,
+      .project-small {
+        min-height: 360px;
+      }
+
+      .asset-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .asset-card {
+        min-height: 260px;
+      }
+
+      .expertise-item {
+        grid-template-columns: 35px 1fr 30px;
+        gap: 12px;
+        padding: 21px 0;
+      }
+
+      .expertise-name {
+        font-size: 1.25rem;
+      }
+
+      .about-line {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 38px 25px;
+        gap: 30px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-top > :first-child {
+        grid-column: auto;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+    PRELOADER
+========================================================= -->
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-name">Triple Double Real Estate</div>
+    <div class="loader-line"><span></span></div>
+  </div>
+</div>
+
+
+<!-- =========================================================
+    HEADER
+========================================================= -->
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-main">Triple Double Real Estate</span>
+      <span class="brand-sub">Investment • Operation • Management</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="#contact" class="header-cta">
+      Start a conversation
+      <i class="bi bi-arrow-up-right"></i>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+</header>
+
+
+<main id="top">
+
+<!-- =========================================================
+    HERO SECTION
+========================================================= -->
+
+<section class="hero">
+  <img
+    class="hero-image"
+    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=90"
+    alt="Modern commercial real estate architecture"
+  >
+
+  <div class="hero-content reveal">
+    <div class="hero-kicker">
+      South Florida • Nationwide Perspective
+    </div>
+
+    <h1 class="hero-title">
+      Investing in places.
+      <span>Building lasting value.</span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-copy">
+        Triple Double Real Estate is a vertically integrated real estate
+        investment, operations and management firm focused on creating
+        value across commercial and residential properties.
+      </p>
+
+      <a href="#portfolio" class="hero-scroll">
+        Explore our work
+        <span class="scroll-circle">
+          <i class="bi bi-arrow-down"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    INTRO SECTION
+========================================================= -->
+
+<section class="intro">
+  <div class="container-custom">
+    <div class="section-label reveal">
+      The Triple Double Difference
+    </div>
+
+    <div class="intro-grid">
+      <h2 class="intro-title reveal">
+        Experience with a
+        <em>different point of view.</em>
+      </h2>
+
+      <div class="reveal">
+        <p class="intro-text">
+          We invest with conviction, operate with discipline,
+          and manage every detail with the long view in mind.
+        </p>
+
+        <p class="intro-small">
+          With more than two decades of real estate experience,
+          Triple Double Real Estate brings investment, leasing,
+          management and operations together under one platform.
+          The result is a hands-on approach designed to uncover
+          opportunity and build enduring value.
+        </p>
+
+        <a href="#about" class="btn-outline mt-4">
+          Discover Triple Double
+          <i class="bi bi-arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    STATS SECTION (TRACK RECORD)
+========================================================= -->
+
+<section class="stats">
+  <div class="container-custom">
+    <div class="stats-heading reveal">
+      <h2 class="stats-title">
+        Built on experience.
+      </h2>
+
+      <p class="stats-description">
+        A track record shaped by acquisition, repositioning,
+        operations and long-term asset management.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-number">
+          <span class="counter" data-target="20">0</span><small>+</small>
+        </div>
+        <div class="stat-label">Years of real estate experience</div>
+      </div>
+
+      <div class="stat reveal">
+        <div class="stat-number">
+          <span class="counter" data-target="1">0</span><small>M+</small>
+        </div>
+        <div class="stat-label">Commercial square feet managed</div>
+      </div>
+
+      <div class="stat reveal">
+        <div class="stat-number">
+          <span class="counter" data-target="4000">0</span><small>+</small>
+        </div>
+        <div class="stat-label">Residential units across leadership track record</div>
+      </div>
+
+      <div class="stat reveal">
+        <div class="stat-number">
+          <span class="counter" data-target="6">0</span><small>M+</small>
+        </div>
+        <div class="stat-label">Commercial square feet across leadership track record</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    PORTFOLIO SECTION
+========================================================= -->
+
+<section class="portfolio" id="portfolio">
+  <div class="container-custom">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-label mb-3">
+          Selected Portfolio
+        </div>
+        <h2 class="section-title">
+          Places with<br>
+          potential.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        A selection of assets representing our approach to
+        acquisition, repositioning, leasing and long-term value creation.
+      </p>
+    </div>
+
+    <div class="portfolio-grid">
+      <article class="project project-large reveal">
+        <img
+          src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1800&q=88"
+          alt="44 W Flagler Street"
+        >
+        <div class="project-overlay">
+          <div class="project-meta">
+            <span>Miami, Florida</span>
+            <span>01 / 05</span>
+          </div>
+          <h3 class="project-name">
+            44 W Flagler Street
+          </h3>
+          <p class="project-info">
+            Office + Retail • Acquired 2022
+          </p>
+        </div>
+      </article>
+
+      <div class="portfolio-side">
+        <article class="project project-small reveal">
+          <img
+            src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=88"
+            alt="2151 W Hillsboro Road"
+          >
+          <div class="project-overlay">
+            <div class="project-meta">
+              <span>Deerfield Beach</span>
+              <span>02 / 05</span>
+            </div>
+            <h3 class="project-name">
+              2151 W Hillsboro
+            </h3>
+            <p class="project-info">
+              40,841 SF • Acquired 2021
+            </p>
+          </div>
+        </article>
+
+        <article class="project project-small reveal">
+          <img
+            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=88"
+            alt="155 E Blue Heron"
+          >
+          <div class="project-overlay">
+            <div class="project-meta">
+              <span>Riviera Beach</span>
+              <span>03 / 05</span>
+            </div>
+            <h3 class="project-name">
+              155 E Blue Heron
+            </h3>
+            <p class="project-info">
+              43,879 SF • Acquired 2021
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    EXPERTISE SECTION
+========================================================= -->
+
+<section class="expertise" id="expertise">
+  <div class="container-custom">
+    <div class="expertise-intro">
+      <div class="reveal">
+        <div class="section-label mb-3">
+          Our Expertise
+        </div>
+        <h2 class="expertise-lead">
+          One platform.
+          <span>Multiple disciplines.</span>
+        </h2>
+      </div>
+
+      <p class="expertise-copy reveal">
+        From identifying opportunities to operating and managing
+        the asset, our integrated model allows us to stay close
+        to every stage of the investment lifecycle.
+      </p>
+    </div>
+
+    <div class="expertise-list">
+      <div class="expertise-item reveal">
+        <span class="expertise-number">01</span>
+        <h3 class="expertise-name">Investment</h3>
+        <span class="expertise-icon"><i class="bi bi-arrow-up-right"></i></span>
+      </div>
+
+      <div class="expertise-item reveal">
+        <span class="expertise-number">02</span>
+        <h3 class="expertise-name">Leasing</h3>
+        <span class="expertise-icon"><i class="bi bi-arrow-up-right"></i></span>
+      </div>
+
+      <div class="expertise-item reveal">
+        <span class="expertise-number">03</span>
+        <h3 class="expertise-name">Management</h3>
+        <span class="expertise-icon"><i class="bi bi-arrow-up-right"></i></span>
+      </div>
+
+      <div class="expertise-item reveal">
+        <span class="expertise-number">04</span>
+        <h3 class="expertise-name">Operations</h3>
+        <span class="expertise-icon"><i class="bi bi-arrow-up-right"></i></span>
+      </div>
+
+      <div class="expertise-item reveal">
+        <span class="expertise-number">05</span>
+        <h3 class="expertise-name">Repositioning & Renovation</h3>
+        <span class="expertise-icon"><i class="bi bi-arrow-up-right"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    ASSET FOCUS SECTION
+========================================================= -->
+
+<section class="asset-focus">
+  <div class="container-custom">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-label mb-3">
+          Asset Focus
+        </div>
+        <h2 class="section-title">
+          Different assets.<br>
+          One philosophy.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        We pursue opportunities across multiple real estate
+        categories where experience and active management can
+        unlock meaningful value.
+      </p>
+    </div>
+
+    <div class="asset-grid">
+      <article class="asset-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85"
+          alt="Urban commercial asset"
+        >
+        <div class="asset-card-content">
+          <div class="asset-card-number">01</div>
+          <h3 class="asset-card-title">Urban Assets</h3>
+        </div>
+      </article>
+
+      <article class="asset-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&q=85"
+          alt="Medical office property"
+        >
+        <div class="asset-card-content">
+          <div class="asset-card-number">02</div>
+          <h3 class="asset-card-title">Medical Office</h3>
+        </div>
+      </article>
+
+      <article class="asset-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85"
+          alt="Residential property"
+        >
+        <div class="asset-card-content">
+          <div class="asset-card-number">03</div>
+          <h3 class="asset-card-title">Workforce Housing</h3>
+        </div>
+      </article>
+
+      <article class="asset-card reveal">
+        <img
+          src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=85"
+          alt="Historic architecture"
+        >
+        <div class="asset-card-content">
+          <div class="asset-card-number">04</div>
+          <h3 class="asset-card-title">Historic Re-Use</h3>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    ABOUT SECTION
+========================================================= -->
+
+<section class="about" id="about">
+  <div class="container-custom">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">
+          About Triple Double
+        </div>
+        <h2 class="about-title mt-4">
+          Think beyond
+          <span>the asset.</span>
+        </h2>
+      </div>
+
+      <div class="about-copy reveal">
+        <p class="about-lead">
+          Real estate is more than a building.
+          It's an opportunity to create something
+          that performs today and remains valuable tomorrow.
+        </p>
+
+        <p class="about-text">
+          Triple Double Real Estate is a South Florida-based
+          investment, operations and management firm with a
+          hands-on approach to commercial and residential real estate.
+          Our vertically integrated platform brings together investment
+          strategy, leasing, property management and operational expertise.
+        </p>
+
+        <div class="about-line">
+          <div class="about-detail">
+            <span>Headquarters</span>
+            <strong>South Florida</strong>
+          </div>
+
+          <div class="about-detail">
+            <span>Platform</span>
+            <strong>Investment • Operation • Management</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+    CONTACT / CTA SECTION (ENHANCED WITH FUNCTIONAL FORM)
+========================================================= -->
+
+<section class="contact" id="contact">
+  <div class="container-custom">
+    <div class="contact-box reveal">
+      <div>
+        <div class="section-label mb-3">
+          Let's Talk
+        </div>
+        <h2 class="contact-title">
+          Let's build something
+          <br>
+          valuable.
+        </h2>
+        <p class="contact-copy">
+          Have an opportunity, property or partnership in mind?
+          Start a conversation with our investment and management team.
+        </p>
+        
+        <div style="margin-top: 30px; font-size: .85rem; color: var(--muted); line-height: 1.7;">
+          <strong>Direct Office:</strong> South Florida<br>
+          <strong>Inquiries:</strong> info@tripledoublere.com
+        </div>
+      </div>
+
+      <div>
+        <form onsubmit="event.preventDefault(); alert('Thank you. Your message has been sent to Triple Double Real Estate team.');" style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <input type="text" placeholder="Full Name" required style="padding: 13px 16px; background: white; border: 1px solid var(--line); font-size: .85rem; outline: none; font-family: inherit;">
+            <input type="email" placeholder="Email Address" required style="padding: 13px 16px; background: white; border: 1px solid var(--line); font-size: .85rem; outline: none; font-family: inherit;">
+          </div>
+          <input type="text" placeholder="Subject / Property Opportunity" style="padding: 13px 16px; background: white; border: 1px solid var(--line); font-size: .85rem; outline: none; font-family: inherit;">
+          <textarea placeholder="Your Message" rows="4" required style="padding: 13px 16px; background: white; border: 1px solid var(--line); font-size: .85rem; outline: none; font-family: inherit; resize: none;"></textarea>
+          
+          <button type="submit" class="btn-main" style="border: none; cursor: pointer; width: 100%; justify-content: center; margin-top: 5px;">
+            Send Inquiry
+            <i class="bi bi-arrow-up-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- =========================================================
+    FOOTER
+========================================================= -->
+
+<footer>
+  <div class="container-custom">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          Triple Double Real Estate
+        </div>
+        <p class="footer-description">
+          Investment • Operation • Management.
+          A vertically integrated real estate platform focused on creating lasting value.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-heading">Navigate</div>
+        <div class="footer-links">
+          <a href="#portfolio">Portfolio</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Online</div>
+        <div class="footer-links">
+          <a href="https://tripledoublere.com/" target="_blank">Official Website</a>
+          <a href="https://tripledoublere.com/portfolio/" target="_blank">Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Triple Double Real Estate</span>
+      <span>Investment • Operation • Management</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- =========================================================
+    JAVASCRIPT SCRIPTS
+========================================================= -->
+
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader").classList.add("hide");
+    }, 700);
+  });
+
+  const header = document.getElementById("siteHeader");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+  menuToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("active");
+    const icon = menuToggle.querySelector("i");
+    if (mainNav.classList.contains("active")) {
+      icon.classList.remove("bi-list");
+      icon.classList.add("bi-x-lg");
+    } else {
+      icon.classList.remove("bi-x-lg");
+      icon.classList.add("bi-list");
+    }
+  });
+
+  document.querySelectorAll(".main-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("active");
+      menuToggle.querySelector("i").className = "bi bi-list";
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+  const counters = document.querySelectorAll(".counter");
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const counter = entry.target;
+      const target = parseInt(counter.dataset.target);
+      let current = 0;
+      const duration = 1300;
+      const start = performance.now();
+      function update(time) {
+        const progress = Math.min((time - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        current = Math.floor(target * ease);
+        counter.textContent = current.toLocaleString();
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          counter.textContent = target.toLocaleString();
+        }
+      }
+      requestAnimationFrame(update);
+      counterObserver.unobserve(counter);
+    });
+  }, { threshold: .5 });
+
+  counters.forEach(counter => counterObserver.observe(counter));
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
